@@ -1,0 +1,61 @@
+html, body {
+  display: grid;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  perspective: 35em;
+  background: #FFF46F;
+  animation: c 3s cubic-bezier(0.32, 0, 0.68, 0) infinite;
+}
+
+@keyframes c {
+  33.333% {
+    background: #70FFF3;
+  }
+  66.667% {
+    background: #F46FFF;
+  }
+}
+.cube {
+  place-self: center;
+  position: relative;
+  width: 3em;
+  transform-style: preserve-3d;
+  transform: rotatex(-90deg) translatez(1.5em);
+  background: #FFF46F;
+  color: #F46FFF;
+  font: 4em/3em teko, sans-serif;
+  text-align: center;
+  text-shadow: 1px 1px 3px #000;
+  text-transform: uppercase;
+  animation: inherit;
+  animation-name: a;
+}
+.cube::before, .cube::after {
+  position: absolute;
+  inset: 0;
+  transform-origin: 100% 100%;
+  transform: translatey(-100%) rotatex(90deg);
+  background: #F46FFF;
+  color: #70FFF3;
+  content: "BEST";
+}
+.cube::after {
+  transform: translate(-100%) rotatey(-90deg);
+  background: #70FFF3;
+  color: #FFF46F;
+  content: "Yakovlev";
+}
+
+@keyframes a {
+  33.333% {
+    transform: translatez(1.5em);
+  }
+  66.667% {
+    transform: rotatey(90deg) translatez(1.5em);
+  }
+}

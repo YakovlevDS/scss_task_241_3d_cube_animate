@@ -1,0 +1,67 @@
+$l: 3em;
+$r: .5*$l;
+$c: #F46FFF #FFF46F #70FFF3;
+$t: 3s;
+
+html, body { display: grid }
+
+html { height: 100% }
+
+body {
+	perspective: 35em;
+	background: nth($c, 2);
+	animation: c $t cubic-bezier(.32, 0, .68, 0) infinite
+}
+
+@keyframes c {
+	33.333% { background: nth($c, 3) }
+	66.667% { background: nth($c, 1) }
+}
+
+.cube {
+	place-self: center;
+	position: relative;
+	width: $l;
+	transform-style: preserve-3d;
+	transform: 
+		rotatex(-90deg) 
+		translatez($r);
+	background: nth($c, 2);
+	color: nth($c, 1);
+	font: 4em/ #{$l} teko, sans-serif;
+	text-align: center;
+	text-shadow: 1px 1px 3px #000;
+	text-transform: uppercase;
+	animation: inherit;
+	animation-name: a;
+	
+	&::before, &::after {
+		position: absolute;
+		inset: 0;
+		transform-origin: 100% 100%;
+		transform: 
+			translatey(-100%) 
+			rotatex(90deg);
+		background: nth($c, 1);
+		color: nth($c, 3);
+		content: 'BEST'
+	}
+	
+	&::after {
+		transform: 
+			translate(-100%) 
+			rotatey(-90deg);
+		background: nth($c, 3);
+		color: nth($c, 2);
+		content: 'Yakovlev'
+	}
+}
+
+@keyframes a {
+	33.333% { transform: translatez($r) }
+	66.667% {
+		transform: 
+			rotatey(90deg) 
+			translatez($r)
+	}
+}
